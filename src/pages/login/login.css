@@ -1,0 +1,63 @@
+.bg_gradient {
+    background: url("/src//assets/images/beam bg last.png") no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    /* Full screen height */
+    width: 100%;
+}
+.beam_img {
+    height: 95px;
+}
+.form_grid {
+    display: -ms-inline-grid;
+}
+.g-sidenav-show {
+    /* margin-left: 250px; */
+}
+
+.login_div {
+    background-color: #fff;
+    border: 1px solid lightgray;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.g-sidenav-show,
+.login_container_8 {
+    height: 100vh;
+}
+
+.form_col_5 {
+    padding-top: 100px;
+}
+
+#sign_in {
+    text-align: center;
+}
+
+.login_text {
+    font-size: 30px;
+    font-weight: 500;
+    /* color: #4c8ecb; */
+    color: #56499e;
+}
+
+.forget_reset a {
+    color: #56499e !important;
+    text-decoration: none;
+}
+
+.g-sidenav-show .main-content {
+    /* background-color: #4c8ecb; */
+}
+.register_grad {
+    background-color: #56499e;
+}
+.forget_txt, .reset_txt {
+    color: #56499e !important;
+}
+.register_grad:hover {
+    background-color: #56499e;
+
+}

@@ -1,0 +1,119 @@
+/* Wrapper to enable horizontal and vertical scrolling */
+#create_expense.table-responsive {
+    width: 100%;
+    max-height: 500px; /* Adjust height as needed */
+    overflow: auto; /* Enables both horizontal & vertical scrolling */
+    position: relative;
+}
+
+/* Ensure table takes full width but allows scrolling */
+#create_expense .table {
+    width: 100%; /* Allows table to expand without squeezing columns */
+    border-collapse: separate;
+    border-spacing: 0;
+}
+/* #create_expense tr > *:nth-child(1), #create_expense tr > *:nth-child(2), #create_expense tr > *:nth-child(3) {
+    width: 133px;
+    max-width: 133px;
+    min-width: 133px;
+    white-space: normal;
+    z-index: 999999;
+} */
+/* Sticky Header */
+#create_expense thead th {
+    position: sticky;
+    top: 0;
+    /* background-color: #626be8; */
+    color: black;
+    /* z-index: 1000; */
+}
+
+/* Sticky First Three Columns */
+#create_expense th:nth-child(1), #create_expense td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    background-color: #fff;
+    /* z-index: 9999; */
+}
+
+#create_expense th:nth-child(2), #create_expense td:nth-child(2) {
+    position: sticky;
+    left: 150px; /* Adjust width */
+    background-color: #fff;
+    /* z-index: 9999; */
+}
+
+#create_expense th:nth-child(3), #create_expense td:nth-child(3) {
+    position: sticky;
+    left: 300px; /* Adjust width */
+    background-color: #fff;
+    /* z-index: 9999; */
+}
+
+/* Prevent text from breaking */
+#create_expense td, #create_expense th {
+    white-space: nowrap;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+#create_expense tr > *:nth-child(1), #create_expense tr > *:nth-child(2){
+    width: 150px;
+    max-width: 150px;
+    position: sticky !important;
+    /* background: transparent; */
+    min-width: 150px;
+    white-space: normal;
+    /* z-index: 1000; */
+    z-index: 3;
+}
+#create_expense tr > *:nth-child(2) {
+    z-index: 3;
+}
+#create_expense tr > *:nth-child(3) {
+    width: 120px;
+    max-width: 120px;
+    position: sticky !important;
+    /* background: transparent; */
+    min-width: 120px;
+    white-space: normal;
+    z-index: 3;
+}
+
+
+
+
+#create_expense td span.text-right {
+     text-align: right  !important;
+}
+.fixed-column {
+    /* width: 150px !important;
+    max-width: 150px !important;
+    min-width: 150px !important; */
+    white-space: nowrap !important;
+    text-align: center !important;
+  }
+  .three_head {
+    /* display: flex !important; */
+    justify-content: left !important;
+  }
+  th.fixed-column {
+    z-index: 4 !important;
+}
+
+th.fixed-column:nth-child(-n+3) {
+    z-index: 5 !important;
+}
+td.fixed-column {
+    white-space: normal !important;
+    text-align: left !important;
+}
+.amount_span{
+    display: block !important;
+    text-align: right !important;
+}
+td.fixed-column, th.fixed-column{
+    width: 150px;
+    min-width:150px;
+    max-width: 150px
+}

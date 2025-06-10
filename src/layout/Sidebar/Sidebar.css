@@ -1,0 +1,8 @@
+#sidebar_menu .logo_closed img {
+    width: 35px !important;
+}
+
+
+#sidebar_menu .logo_open img {
+    width: 55px !important;
+}

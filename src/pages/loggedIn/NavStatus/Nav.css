@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap");
+
+body{
+    /* background: #ededed; */
+    /* background-color: #f7f7f7; */
+    background-color: #E8EFFA;
+   }
+  .content{
+    /* width: 450px; */
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    /* padding: 30px; */
+  }
+  .nav-pills{
+    width: 100%;
+  }
+  .nav-item{
+    /* width: 20%; */
+    width: 24.97%;
+  }
+  .nav-pills .nav-link{
+    /* font-weight: bold; */
+    padding-top: 0px;
+    text-align: center;
+    /* background: #343436; */
+    /* background: #2a3a44; */
+    /* background: lightgrey; */
+    color: #fff;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    height: 100px;
+    height: 72px;
+    border: 1px solid #E8EFFA;
+    /* background: #48a8dd; */
+    background: #626BE8;
+  }
+  .nav-pills .nav-link.active{
+    /* background: #3644FF; */
+    background: #fff;
+    width: 100%;
+    color: #000;
+    margin: 0;
+    /* padding: 0px;
+    height: 76px; */
+    border-radius: 20px 20px 0 0;
+    border: none !important;
+  }
+  .tab-content{
+    position: absolute;
+    /* width: 450px; */
+    width: 79%;
+    height: auto;
+    margin-top: -22px;
+    background: #fff;
+    color: #000;
+    border-radius: 30px;
+    z-index: 1000;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    margin-bottom: 50px;
+  }
+  .tab-content button{
+    /* border-radius: 15px;
+    width: 100px;
+    margin: 0 auto; */
+    /* float: right; */
+  }
+  .table-responsive table svg {
+    font-size: 18px !important;
+  }
+  .create_expense_card {
+    width: 100%; /* Ensures full width */
+    max-width: 100%; /* Prevents unnecessary constraints */
+  }
+  .counter-badge {
+    background-color: red;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    width: 15px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    /* right: 10px; */
+    right: 51px;
+    transform: translateY(-50%);
+  }
+  .counter-badge.myreq {
+    top: 45% !important;
+    right: 65px !important;
+  }
+  .counter-badge.report {
+    top: 46% !important;
+    right: 89px !important;
+
+  }
+  .counter-badge.myquer {
+    top: 46% !important;
+    right: 75px !important;
+  }
+  .css-pdct74-MuiTablePagination-selectLabel {
+    padding-top: 13px;
+  }
+  .css-levciy-MuiTablePagination-displayedRows {
+    padding-top: 16px;
+  }
+  .content .nav-item button {
+    position: relative;
+  }
+  /* when sidebar opens use this */
+  /* .tab-content area {
+    width: 79%;
+    } */
+
+
+
+    /* when sidebar open , above css
+    when sidebar closed, below css */
+    .tab-content.area {
+    width: 90.5%;
+    }
+    #nav_status .container.tab-pane.active {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+    }
+    #nav_status .card.shadow-none.border.bg_white.create_expense_card {
+      width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+tbody#svg_tbody {
+font-size: 12px;
+}
+    
+
+
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root  {
+  font-size: 0.5rem  !important;
+  padding: 1px  !important;
+}
+.queries_subtab_content {
+  margin-left: -30px;
+    margin-top: 0px;
+    width: 100%;
+}
+.quer_sub_ul {
+  z-index: 999999;
+    position: relative;
+}
+.quer_sub_ul .nav-item {
+  width: 12%;
+}
+.queries_subtab_content {
+  position: static;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.sub_tab_navstatus .nav-tabs .nav-link.active {
+  border-bottom: none !important;
+    color: #0d6efd !important;
+    box-shadow: 1px 0px 5px rgba(0, 0.1, 0.2, 0.3) !important;
+}
+
+.sub_tab_navstatus .nav-item button {
+  color: #6c6767;
+}
+
+    

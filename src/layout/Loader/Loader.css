@@ -1,0 +1,45 @@
+/* Overlay to cover the entire screen */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+  }
+  
+  /* Loader (spinner) */
+  .loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db; /* Blue spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Keyframes for spinner animation */
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+
+  .dots-7 {
+    width: 12px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: 19px -19px 0 0px, 38px -19px 0 0px, 57px -19px 0 0px, 19px 0 0 5px, 38px 0 0 5px, 57px 0 0 5px, 19px 19px 0 0px, 38px 19px 0 0px, 57px 19px 0 0px;
+    /* transform: translateX(322px); */
+    animation: d6 2s infinite linear;
+    color: #48A8DD;
+    display: flex;
+    margin-left: 45vw;
+    margin-top: 5vw;
+    justify-content: center;
+    /* text-align: center; */
+}

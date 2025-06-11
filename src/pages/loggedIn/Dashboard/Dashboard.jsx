@@ -12,6 +12,8 @@ import {
 import DashboardLine from './DashboardLine';
 import DashboardUtilization from './DashboardUtilization';
 import DashboardVarianceAnalysis from './DashboardVarianceAnalysis';
+import DashboardWaterFall from './DashboardWaterFall';
+import DashboardPieChart from './DashboardPieChart';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -83,6 +85,8 @@ const Dashboard = () => {
         <DashboardLine />
         <DashboardUtilization />
         <DashboardVarianceAnalysis />
+        <DashboardWaterFall />
+        {/* <DashboardPieChart /> */}
       </div>
     </div>
   );

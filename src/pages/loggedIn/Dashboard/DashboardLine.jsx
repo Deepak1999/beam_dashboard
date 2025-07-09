@@ -21,27 +21,49 @@ ChartJS.register(
     Legend
 );
 
-const DashboardLine = () => {
-    const labels = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ];
+const DashboardLine = ({ revenueExpenseData }) => {
+    // const labels = [
+    //     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    // ];
+
+    // const data = {
+    //     labels,
+    //     datasets: [
+    //         {
+    //             label: 'Budgeted Profit',
+    //             data: [100, 120, 140, 130, 160, 180, 170, 190, 200, 210, 220, 230],
+    //             borderColor: 'rgb(7, 152, 152)',
+    //             backgroundColor: 'rgba(5, 156, 43, 0.2)',
+    //             tension: 0.4,
+    //             fill: false,
+    //         },
+    //         {
+    //             label: 'Actual Profit',
+    //             data: [130, 140, 155, 115, 180, 211, 155, 130, 120, 190, 192, 255],
+    //             borderColor: 'rgba(215, 13, 57, 0.95)',
+    //             backgroundColor: 'rgba(236, 65, 65, 0.2)',
+    //             tension: 0.4,
+    //             fill: false,
+    //         },
+    //     ],
+    // };
 
     const data = {
-        labels,
+        labels: revenueExpenseData?.labels || [],
         datasets: [
             {
                 label: 'Budgeted Profit',
-                data: [100, 120, 140, 130, 160, 180, 170, 190, 200, 210, 220, 230],
-                borderColor: 'rgb(54, 236, 236)',
-                backgroundColor: 'rgba(21, 174, 174, 0.2)',
+                data: revenueExpenseData?.projectedProfit || [],
+                borderColor: 'rgb(7, 152, 152)',
+                backgroundColor: 'rgba(5, 156, 43, 0.2)',
                 tension: 0.4,
                 fill: false,
             },
             {
                 label: 'Actual Profit',
-                data: [130, 140, 155, 115, 180, 211, 155, 130, 120, 190, 192, 255],
-                borderColor: 'rgb(219, 49, 86)',
-                backgroundColor: 'rgba(236, 41, 83, 0.2)',
+                data: revenueExpenseData?.actualProfit || [],
+                borderColor: 'rgba(215, 13, 57, 0.95)',
+                backgroundColor: 'rgba(236, 65, 65, 0.2)',
                 tension: 0.4,
                 fill: false,
             },
@@ -62,10 +84,6 @@ const DashboardLine = () => {
         scales: {
             y: {
                 beginAtZero: true,
-                title: {
-                    display: true,
-                    // text: 'Profit ($)',
-                },
             },
         },
     };

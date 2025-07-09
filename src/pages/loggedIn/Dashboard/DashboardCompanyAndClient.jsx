@@ -10,6 +10,7 @@ const DashboardCompanyAndClient = () => {
     const [selectedClientCode, setSelectedClientCode] = useState('');
     const [selectedYear, setSelectedYear] = useState('2025');
     const [years, setYears] = useState([]);
+    const [revenueExpenseData, setRevenueExpenseData] = useState([]);
 
     const handleGetBusinessCompany = async () => {
         try {
@@ -73,7 +74,16 @@ const DashboardCompanyAndClient = () => {
     };
 
     const handleGetRevenueExpenseDetails = async () => {
-        if (!selectedBusinessId || !selectedClientCode || !selectedYear) return;
+        if (!selectedBusinessId || !selectedYear) return;
+
+        const bodyPayload = {
+            businessId: parseInt(selectedBusinessId),
+            year: selectedYear,
+        };
+
+        if (selectedClientCode) {
+            bodyPayload.costClientCode = selectedClientCode;
+        }
 
         try {
             const authToken = localStorage.getItem('token');
@@ -84,18 +94,19 @@ const DashboardCompanyAndClient = () => {
                     'Authorization': `Bearer ${authToken}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    businessId: parseInt(selectedBusinessId),
-                    year: selectedYear,
-                    costClientCode: selectedClientCode
-                })
+                body: JSON.stringify(bodyPayload)
             });
 
             const data = await response.json();
 
             if (data.statusDescription?.statusCode === 200) {
-                console.log('Revenue/Expense Data:', data);
-                // TODO: Update state if needed to render chart or table
+                const monthOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+                const sorted = (data.businessSummaries || []).sort((a, b) =>
+                    monthOrder.indexOf(a.month) - monthOrder.indexOf(b.month)
+                );
+
+                setRevenueExpenseData(sorted);
             } else {
                 console.error(data.statusDescription?.description || 'Revenue API error');
             }
@@ -105,8 +116,16 @@ const DashboardCompanyAndClient = () => {
     };
 
     useEffect(() => {
-        handleGetRevenueExpenseDetails();
-    }, [selectedYear, selectedClientCode]);
+        if (selectedBusinessId && selectedYear) {
+            handleGetRevenueExpenseDetails();
+        }
+    }, [selectedBusinessId, selectedYear]);
+
+    useEffect(() => {
+        if (selectedClientCode) {
+            handleGetRevenueExpenseDetails();
+        }
+    }, [selectedClientCode]);
 
     useEffect(() => {
         handleGetClientCodeByBusinessId();

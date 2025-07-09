@@ -12,8 +12,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 const DashboardPieChart = () => {
     const labels = [
-        'Start', 'January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December', 'End'
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ];
 
     const dataValues = [

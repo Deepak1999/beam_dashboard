@@ -22,31 +22,6 @@ ChartJS.register(
 );
 
 const DashboardLine = ({ revenueExpenseData }) => {
-    // const labels = [
-    //     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    // ];
-
-    // const data = {
-    //     labels,
-    //     datasets: [
-    //         {
-    //             label: 'Budgeted Profit',
-    //             data: [100, 120, 140, 130, 160, 180, 170, 190, 200, 210, 220, 230],
-    //             borderColor: 'rgb(7, 152, 152)',
-    //             backgroundColor: 'rgba(5, 156, 43, 0.2)',
-    //             tension: 0.4,
-    //             fill: false,
-    //         },
-    //         {
-    //             label: 'Actual Profit',
-    //             data: [130, 140, 155, 115, 180, 211, 155, 130, 120, 190, 192, 255],
-    //             borderColor: 'rgba(215, 13, 57, 0.95)',
-    //             backgroundColor: 'rgba(236, 65, 65, 0.2)',
-    //             tension: 0.4,
-    //             fill: false,
-    //         },
-    //     ],
-    // };
 
     const data = {
         labels: revenueExpenseData?.labels || [],
@@ -84,8 +59,19 @@ const DashboardLine = ({ revenueExpenseData }) => {
         scales: {
             y: {
                 beginAtZero: true,
-            },
-        },
+                ticks: {
+                    callback: function (value) {
+                        const absValue = Math.abs(value);
+                        const sign = value < 0 ? '-' : '';
+
+                        if (absValue >= 1_00_00_000) return `${sign}${(absValue / 1_00_00_000).toFixed(1)}Cr`;
+                        if (absValue >= 1_00_000) return `${sign}${(absValue / 1_00_000).toFixed(1)}L`;
+                        if (absValue >= 1_000) return `${sign}${(absValue / 1_000).toFixed(1)}K`;
+                        return `${value}`;
+                    }
+                }
+            }
+        }
     };
 
     return (

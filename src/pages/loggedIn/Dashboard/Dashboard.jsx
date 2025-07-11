@@ -136,8 +136,17 @@ const Dashboard = () => {
 
   const profitData = {
     labels,
+    projectedDifference: revenueExpenseData.map(item => item.projectedDifference ?? 0),
+    projectedLoss: revenueExpenseData.map(item => item.projectedLoss ?? 0),
+
+    // this is for graph 3 and 4
+    actualDifference: revenueExpenseData.map(item => item.actualDifference ?? 0),
+
+    actualLoss: revenueExpenseData.map(item => item.actualLoss ?? 0),
+    // this is for graph 2
     projectedProfit: revenueExpenseData.map(item => item.projectedProfit ?? 0),
     actualProfit: revenueExpenseData.map(item => item.actualProfit ?? 0),
+
   };
 
   useEffect(() => {
@@ -146,11 +155,17 @@ const Dashboard = () => {
     }
   }, [selectedBusinessId, selectedYear]);
 
+  // useEffect(() => {
+  //   if (selectedClientCode) {
+  //     handleGetRevenueExpenseDetails();
+  //   }
+  // }, [selectedClientCode]);
+
   useEffect(() => {
-    if (selectedClientCode) {
+    if (selectedBusinessId && selectedYear) {
       handleGetRevenueExpenseDetails();
     }
-  }, [selectedClientCode]);
+  }, [selectedBusinessId, selectedYear, selectedClientCode]);
 
   useEffect(() => {
     handleGetClientCodeByBusinessId();
@@ -171,23 +186,23 @@ const Dashboard = () => {
     datasets: [
       {
         label: 'Budgeted Revenue',
-        data: revenueExpenseData?.projectedProfit || [],
-        backgroundColor: 'rgba(14, 55, 238, 0.7)',
+        data: revenueExpenseData.map(item => item.projectedRevenueAmount ?? 0),
+        backgroundColor: 'rgba(7, 42, 201, 0.67)',
       },
       {
         label: 'Actual Revenue',
-        data: revenueExpenseData?.projectedProfit || [],
-        backgroundColor: 'rgba(18, 148, 235, 0.7)',
+        data: revenueExpenseData.map(item => item.actualRevenueAmount ?? 0),
+        backgroundColor: 'rgba(199, 18, 235, 0.7)',
       },
       {
         label: 'Budgeted Expenses',
-        data: revenueExpenseData?.projectedProfit || [],
-        backgroundColor: 'rgba(3, 136, 127, 0.7)',
+        data: revenueExpenseData.map(item => item.projectedExpenseAmount ?? 0),
+        backgroundColor: 'rgba(1, 78, 47, 0.32)',
       },
       {
         label: 'Actual Expenses',
-        data: revenueExpenseData?.projectedProfit || [],
-        backgroundColor: 'rgba(24, 211, 18, 0.96)',
+        data: revenueExpenseData.map(item => item.actualExpenseAmount ?? 0),
+        backgroundColor: 'rgba(5, 134, 0, 0.57)',
       },
     ],
   };
@@ -208,7 +223,13 @@ const Dashboard = () => {
         beginAtZero: true,
         ticks: {
           callback: function (value) {
-            return (value);
+            const absValue = Math.abs(value);
+            const sign = value < 0 ? '-' : '';
+
+            if (absValue >= 1_00_00_000) return `${sign}${(absValue / 1_00_00_000).toFixed(1)}Cr`;
+            if (absValue >= 1_00_000) return `${sign}${(absValue / 1_00_000).toFixed(1)}L`;
+            if (absValue >= 1_000) return `${sign}${(absValue / 1_000).toFixed(1)}K`;
+            return `${value}`;
           },
         },
       },
@@ -284,8 +305,8 @@ const Dashboard = () => {
           </div>
         </div>
         <DashboardLine revenueExpenseData={profitData} />
-        {/* <DashboardUtilization /> */}
-        {/* <DashboardVarianceAnalysis /> */}
+        <DashboardUtilization revenueExpenseData={profitData} />
+        <DashboardVarianceAnalysis revenueExpenseData={profitData} />
         {/* <DashboardWaterFall /> */}
         {/* <DashboardPieChart /> */}
       </div>

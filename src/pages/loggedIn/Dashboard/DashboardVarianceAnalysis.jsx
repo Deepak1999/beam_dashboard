@@ -12,23 +12,15 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const DashboardVarianceAnalysis = () => {
-    const labels = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-    ];
+const DashboardVarianceAnalysis = ({ revenueExpenseData }) => {
 
     const data = {
-        labels,
+        labels: revenueExpenseData?.labels || [],
         datasets: [
             {
-                label: 'Budgeted Revenue',
-                data: [300, 280, 320, 310, 330, 340, 350, 360, 370, 380, 390, 400],
-                backgroundColor: 'rgba(91, 234, 14, 0.87)',
-            },
-            {
-                label: 'Budgeted Expenses',
-                data: [-200, -210, -190, -180, -195, -205, -210, -220, -215, -225, -230, -240],
-                backgroundColor: 'rgba(235, 84, 117, 0.87)',
+                label: 'Actual vs. Budget',
+                data: revenueExpenseData?.actualDifference || [],
+                backgroundColor: 'rgba(60, 2, 249, 0.87)',
             },
         ],
     };
@@ -41,19 +33,39 @@ const DashboardVarianceAnalysis = () => {
             },
             title: {
                 display: true,
-                text: 'Variance Analysis (Actual & Budget)',
+                text: 'Variance Analysis',
             },
+            tooltip: {
+                callbacks: {
+                    label: function (context) {
+                        const value = context.raw;
+                        const absValue = Math.abs(value);
+                        const sign = value < 0 ? '-' : '';
+
+                        if (absValue >= 1_00_00_000) return `${context.dataset.label}: ${sign}${(absValue / 1_00_00_000).toFixed(1)}Cr`;
+                        if (absValue >= 1_00_000) return `${context.dataset.label}: ${sign}${(absValue / 1_00_000).toFixed(1)}L`;
+                        if (absValue >= 1_000) return `${context.dataset.label}: ${sign}${(absValue / 1_000).toFixed(1)}K`;
+                        return `${context.dataset.label}: ${value}`;
+                    }
+                }
+            }
         },
         scales: {
             y: {
                 beginAtZero: true,
                 ticks: {
                     callback: function (value) {
-                        return (value);
-                    },
-                },
-            },
-        },
+                        const absValue = Math.abs(value);
+                        const sign = value < 0 ? '-' : '';
+
+                        if (absValue >= 1_00_00_000) return `${sign}${(absValue / 1_00_00_000).toFixed(1)}Cr`;
+                        if (absValue >= 1_00_000) return `${sign}${(absValue / 1_00_000).toFixed(1)}L`;
+                        if (absValue >= 1_000) return `${sign}${(absValue / 1_000).toFixed(1)}K`;
+                        return `${value}`;
+                    }
+                }
+            }
+        }
     };
 
     return (
